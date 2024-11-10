@@ -68,6 +68,14 @@ public class Usuario {
     }
     
     public boolean login(String senha) {
-        
+        return senha.length() == 4;
+    }
+
+    /*public void logout() {
+
+    }*/
+
+    public String consultarDados() {
+        return nome + cpf + dataNascimento + telefone + endereco;
     }
 }
