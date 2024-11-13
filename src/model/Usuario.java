@@ -1,24 +1,40 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.time.LocalDate;
 
-/**
- *
- * @author luiz.faraujo
- */
-public class Usuario {
-    
+public abstract class Usuario {
     private int id;
     private String nome;
     private String cpf;
     private LocalDate dataNascimento;
     private String telefone;
     private Endereco endereco;
+    private String senha;
+    private boolean logado;
 
+    public boolean login(String senha) {
+        if (this.senha.equals(senha)) {
+            logado = true;
+            return true;
+        }
+        return false;
+    }
+
+    public void logout() {
+        if (logado) {
+            logado = false;
+            System.out.println("Logout realizado com sucesso.");
+        } else {
+            System.out.println("Usuário já está deslogado.");
+        }
+    }
+
+    public String consultarDados() {
+        return "Nome: " + nome + "\nCPF: " + cpf + "\nData de Nascimento: " + dataNascimento +
+                "\nTelefone: " + telefone + "\nEndereço: " + endereco.toString();
+    }
+
+    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -66,16 +82,16 @@ public class Usuario {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
-    public boolean login(String senha) {
-        return senha.length() == 4;
+
+    public String getSenha() {
+        return senha;
     }
 
-    /*public void logout() {
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-    }*/
-
-    public String consultarDados() {
-        return nome + cpf + dataNascimento + telefone + endereco;
+    public boolean isLogado() {
+        return logado;
     }
 }

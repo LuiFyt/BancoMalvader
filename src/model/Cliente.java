@@ -3,6 +3,7 @@ package model;
 public class Cliente extends Usuario {
 
     private String cliente;
+    private Conta conta;
 
     public String getCliente() {
         return cliente;
@@ -13,10 +14,24 @@ public class Cliente extends Usuario {
     }
 
     public double consultarSaldo() {
-        return 0.0;
+        return conta.getSaldo();
     }
 
     public void depositar(double valor) {
-        
+        if (valor > 0) {
+            conta.depositar(valor);
+            System.out.println("Depósito de " + valor + " realizado com sucesso.");
+        } else {
+            System.out.println("Valor de depósito inválido.");
+        }
+    }
+
+    public void sacar(double valor) {
+        if (valor > 0) {
+            conta.sacar(valor);
+            System.out.println("Saque de " + valor + " realizado com sucesso.");
+        } else {
+            System.out.println("Valor de saque inválido.");
+        }
     }
 }
