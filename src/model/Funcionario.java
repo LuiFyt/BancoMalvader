@@ -108,4 +108,8 @@ public class Funcionario extends Usuario {
     public void setClientesGerenciados(List<Cliente> clientesGerenciados) {
         this.clientesGerenciados = clientesGerenciados;
     }
+    
+    public String getTipoUsuario() {
+        return tipoUsuario.FUNCIONARIO.toString();
+    }
 }

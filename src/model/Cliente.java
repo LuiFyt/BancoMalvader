@@ -34,4 +34,8 @@ public class Cliente extends Usuario {
             System.out.println("Valor de saque inválido.");
         }
     }
+    
+    public String getTipoUsuario() {
+        return tipoUsuario.CLIENTE.toString();
+    }
 }

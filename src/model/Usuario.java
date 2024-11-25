@@ -1,5 +1,6 @@
 package model;
 
+import DAO.UsuarioDAO;
 import java.time.LocalDate;
 
 public abstract class Usuario {
@@ -11,13 +12,16 @@ public abstract class Usuario {
     private Endereco endereco;
     private String senha;
     private boolean logado;
+    
+    public enum tipoUsuario {
+      FUNCIONARIO,
+      CLIENTE
+    };
 
     public boolean login(String senha) {
-        if (this.senha.equals(senha)) {
-            logado = true;
-            return true;
-        }
-        return false;
+        UsuarioDAO u = new UsuarioDAO();
+        String senhaDAO = u.conferirSenha(id);
+	return senhaDAO.equals(senha);
     }
 
     public void logout() {
