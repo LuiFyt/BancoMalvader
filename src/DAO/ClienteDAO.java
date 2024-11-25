@@ -4,8 +4,10 @@
  */
 package DAO;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import model.Cliente;
+import model.Conta;
 
 /**
  *
@@ -13,11 +15,12 @@ import model.Cliente;
  */
 public class ClienteDAO {
     public void save(Cliente c) throws Exception {
-        try {
-        String sql = "INSERT INTO cliente(id_cliente,id_usuario) values(null,?)";
-        try (Connection conn = Conection)
+        String sql = "INSERT INTO conta(id_cliente,id_usuario) values(null,?)";
+        try (Connection conn = ConnectionFactory.conectar();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, c.getId());
         } catch (Exception e) {
             System.out.println("Erro " + e.getMessage());
-        }  
+        }
     }
 }

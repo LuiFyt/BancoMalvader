@@ -15,7 +15,7 @@ import model.Conta;
 public class ContaDAO {
     public void save(Conta c) throws Exception {
         String sql = "INSERT INTO conta(id_conta,numero_conta,agencia,saldo) values(null,?,?,?)";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = ConnectionFactory.conectar();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, c.getNumero());
             stmt.setString(2, c.getAgencia());
@@ -27,7 +27,7 @@ public class ContaDAO {
     
         public void update(Conta c) throws Exception {
         String sql = "update conta set numero_conta=?,agencia=?,saldo=? WHERE id_conta=?";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = ConnectionFactory.conectar();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, c.getNumero());
             stmt.setString(2, c.getAgencia());
@@ -40,7 +40,7 @@ public class ContaDAO {
     
     public void delete(Conta c) throws Exception {
 	String sql = "delete from conta where id_conta=?";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = ConnectionFactory.conectar();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             //stmt.setInt(1, );
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class ContaDAO {
     
     public void findById(Conta c) throws Exception {
         String sql = "Select from conta where id_conta=?";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = ConnectionFactory.conectar();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             //stmt.setInt(1, );
         } catch (Exception e) {

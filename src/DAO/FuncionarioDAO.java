@@ -15,7 +15,7 @@ import model.Funcionario;
 public class FuncionarioDAO {
     public void save(Funcionario f) throws Exception {
         String sql = "INSERT INTO funcionario(id_funcionario,codigo_funcionario,cargo) values(null,?,?)";
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = ConnectionFactory.conectar();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, f.getCodigoFuncionario());
             stmt.setString(2, f.getCargo());
